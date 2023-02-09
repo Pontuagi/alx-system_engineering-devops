@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -laR {/alx-system_engineering-devops/0x00sh /boot
+ls -al . .. /boot
