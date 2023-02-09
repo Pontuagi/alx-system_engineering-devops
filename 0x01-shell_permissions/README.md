@@ -8,4 +8,5 @@
 7-everybody adds execution permissions to the owner, group owner and, other users 
 8-James_Bond gives all the permissions to other users only
 9-John_Doe changes the mode of the file to -rwxr-x-wx
-10-mirror_permissions sets the mode of the file hello the same as olleh        
+10-mirror_permissions sets the mode of the file hello the same as olleh
+11-directories_permissions gives execute permissions to all subdirectories of the current directory        
