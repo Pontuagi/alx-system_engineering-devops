@@ -10,3 +10,5 @@
 9-firstdirdeletionn deletes a directory
 10-back is a script that changes working directoty to the previous one
 11-lists is a script to read files from different directories
+12-file_type is a script to read the type of file
+
