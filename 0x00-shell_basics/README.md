@@ -7,4 +7,5 @@
 4-listmorefiles displays hidden files in long format
 4-listmorefiles displays hidden files in long format
 4-listmorefiles displays hidden files in long format
+5-listfilesdigitonly displays current directory in long format with user and group IDS displayed numerically, and hidden files
 
