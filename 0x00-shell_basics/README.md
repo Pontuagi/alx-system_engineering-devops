@@ -8,4 +8,5 @@
 7-move that file is a script to move file from one directory to another
 8-firstdelete deletes files from a directory
 9-firstdirdeletionn deletes a directory
+10-back is ascript that changes working directoty to the previous one
 
