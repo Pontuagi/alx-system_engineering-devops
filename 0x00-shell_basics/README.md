@@ -7,4 +7,5 @@
 6-firstdirectory creates a directory in a tmp directory
 7-move that file is a script to move file from one directory to another
 8-firstdelete deletes files from a directory
+9-firstdirdeletionn deletes a directory
 
