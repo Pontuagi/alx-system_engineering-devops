@@ -5,4 +5,5 @@
 4-empty creates and empty folder
 5-execute adds execute permission to the owner
 6-multiple_permissions adds execute permissions to the owner and the group owner, and read permission  to other users
-7-everybody adds execution permissions to the owner, group owner and, other users     
+7-everybody adds execution permissions to the owner, group owner and, other users 
+8-James_Bond gives all the permissions to other users only      
