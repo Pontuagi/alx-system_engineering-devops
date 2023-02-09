@@ -6,4 +6,5 @@
 5-execute adds execute permission to the owner
 6-multiple_permissions adds execute permissions to the owner and the group owner, and read permission  to other users
 7-everybody adds execution permissions to the owner, group owner and, other users 
-8-James_Bond gives all the permissions to other users only      
+8-James_Bond gives all the permissions to other users only
+9-John_Doe changes the mode of the file to -rwxr-x-wx       
