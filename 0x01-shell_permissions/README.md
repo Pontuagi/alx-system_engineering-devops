@@ -10,4 +10,5 @@
 9-John_Doe changes the mode of the file to -rwxr-x-wx
 10-mirror_permissions sets the mode of the file hello the same as olleh
 11-directories_permissions gives execute permissions to all subdirectories of the current directory
-12-directory_permissions creates a directory with permission 751         
+12-directory_permissions creates a directory with permission 751 
+13-change_group changes the group owner         
