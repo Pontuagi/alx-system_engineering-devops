@@ -11,4 +11,5 @@
 10-back is a script that changes working directoty to the previous one
 11-lists is a script to read files from different directories
 12-file_type is a script to read the type of file
-
+13-symbolic_link creates a symbolic link to /bin/ls named _ls_
+13-copy_html copies all HTML files from . to .. directory 

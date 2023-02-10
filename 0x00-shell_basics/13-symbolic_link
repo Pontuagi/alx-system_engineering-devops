@@ -1,2 +1,2 @@
 #!/bin/bash
-ln -s /bin/ls to be linked _ls_
+ln -sf /bin/ls _ls_
