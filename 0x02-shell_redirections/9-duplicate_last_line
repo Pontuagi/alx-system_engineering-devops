@@ -1,2 +1,2 @@
 #!/bin/bash
-last -n 1 iacta >> iacta
+cat last -n 1 iacta >> iacta
