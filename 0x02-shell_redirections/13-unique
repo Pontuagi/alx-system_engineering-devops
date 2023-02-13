@@ -1,2 +1,2 @@
 #!/bin/bash
-sort | unique -c | grep -e '^\s.*1s' | rev |cut -d' ' -f 1| rev
+sort | unique -c | grep 1
