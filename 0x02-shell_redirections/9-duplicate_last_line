@@ -1,2 +1,2 @@
 #!/bin/bash
-cat last -n 1 iacta >> iacta
+echo "$(last -n 1 iacta) >> iacta
