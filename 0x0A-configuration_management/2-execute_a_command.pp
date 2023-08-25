@@ -1,6 +1,6 @@
 # A manifest that kills a process named 'killmenow'
 
 exec { 'kill_killmenow_process':
-  command => 'pkill killmenow',
-  onlyif  => 'pgrep killmenow',
+  command => '/usr/bin/pkill -f killmenow',
+  onlyif  => '/usr/bin/pgrep killmenow',
 }
