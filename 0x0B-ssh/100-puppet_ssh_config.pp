@@ -1,6 +1,9 @@
 # configure ssh
-exec {'echo':
-  path    => 'usr/bin:/bin',
-  command => 'echo " IdentityFile ~/.ssh/school\n PasswordAuthentication no\n" >> /etc/ssh/ssh_config',
-  return  => [0,1],
+file { 'SSH configuration':
+  ensure  => present
+  path    => '/etc/ssh/ssh_config',
+  content => "
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no\n",
+  return  => [0,1]
 }
