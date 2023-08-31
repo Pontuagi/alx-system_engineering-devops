@@ -1,3 +1,4 @@
+# configure ssh
 file {'/root/.ssh/config':
   ensure => file,
   owner => 'ubuntu',
