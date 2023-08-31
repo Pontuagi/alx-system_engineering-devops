@@ -5,5 +5,4 @@ file { 'SSH configuration':
   content => "
     IdentityFile ~/.ssh/school
     PasswordAuthentication no\n",
-  return  => [0,1]
 }
