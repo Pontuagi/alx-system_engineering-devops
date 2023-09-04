@@ -13,8 +13,7 @@ nginx_config_file="/etc/nginx/sites-available/default"
 
 # Install Nginx (if not already installed)
 if ! dpkg -l | grep -q nginx; then
-   apt-get update
-   apt-get install -y nginx
+  echo "Install Nginx."
 fi
 
 # Enable custom header in Nginx configuration
@@ -26,5 +25,3 @@ else
    echo "Nginx is already configured with the custom header."
 fi
 
-# Display the server's hostname
-echo "Server hostname: $(hostname)"
