@@ -8,7 +8,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Define the custom header and configuration file
-custom_header="add_header X-Served-By \$hostname;"
+custom_header="add_header X-Served-By $hostname;"
 nginx_config_file="/etc/nginx/sites-enabled/default"
 
 # Install Nginx (if not already installed)
