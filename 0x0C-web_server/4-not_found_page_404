@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Configure Nginx server to have a custom 404 page
+
+# Define the Nginx configuration file path
+nginx_config_file="/etc/nginx/sites-available/default"
+
+# Define the custom 404 page configuration
+not_found_config="error_page 404 /custom_404.html;
+location = /custom_404.html {
+    root /usr/share/nginx/html;
+    internal;
+    return 404 'Ceci n'est pas une page\n';
+}"
+
+# Install Nginx (if not already installed)
+if ! dpkg -l | grep -q nginx; then
+   sudo apt-get update
+   sudo apt-get install -y nginx
+fi
+
+# Enable the custom 404 page in Nginx configuration
+if ! grep -q "error_page 404 /custom_404.html" "$nginx_config_file"; then
+   echo "$not_found_config" >> "$nginx_config_file"
+   systemctl reload nginx
+   echo "Nginx configured with a custom 404 page."
+else
+   echo "Nginx is already configured with a custom 404 page."
+fi

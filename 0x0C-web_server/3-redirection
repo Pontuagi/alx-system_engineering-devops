@@ -7,19 +7,15 @@ if ! dpkg -l | grep -q nginx; then
    sudo apt-get install -y nginx
 fi
 
-# Define the Nginx configuration file path
-nginx_config_file="/etc/nginx/sites-available/default"
+sudo service nginx start
 
 # Define the redirection configuration
-redirection_config="location /redirect_me {
-    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-}"
+new_redirection="server_name _;\\n\\trewrite ^/redirect https://twitter.com/AfricaFactsZone/status/1698342840177168463 permanent;"
 
 # Enable the redirection in Nginx configuration
-if ! grep -q "location /redirect_me" "$nginx_config_file"; then
-   echo "$redirection_config" sudo tee -a "$nginx_config_file"
-fi
+sudo sed -i "s#server_name _;#$new_redirection#" /etc/nginx/sites-available/default
 
 # test configuration and reload
 sudo nginx -t
+sudo service nginx restart
 sudo service nginx reload
