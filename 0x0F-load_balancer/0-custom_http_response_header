@@ -9,7 +9,7 @@ fi
 
 # Define the custom header and configuration file
 custom_header="add_header X-Served-By \$hostname;"
-nginx_config_file="/etc/nginx/sites-available/default"
+nginx_config_file="/etc/nginx/sites-enabled/default"
 
 # Install Nginx (if not already installed)
 if ! dpkg -l | grep -q nginx; then
