@@ -13,7 +13,8 @@ nginx_config_file="/etc/nginx/sites-available/default"
 
 # Install Nginx (if not already installed)
 if ! dpkg -l | grep -q nginx; then
-  echo "Install Nginx."
+   apt-get update
+   apt-get install -y nginx  
 fi
 
 # Enable custom header in Nginx configuration
@@ -24,4 +25,3 @@ if ! grep -q "$custom_header" "$nginx_config_file"; then
 else
    echo "Nginx is already configured with the custom header."
 fi
-
