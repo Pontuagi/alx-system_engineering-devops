@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # configure ngix server so that '/redirect_me' redirects to another page
 
 # Install Nginx if not installed
