@@ -2,22 +2,23 @@
 # configure ngix server so that '/redirect_me' redirects to another page
 
 # Install Nginx if not installed
-sudo apt-get update
-sudo apt-get install -y nginx
+if ! dpkg -l | grep -q nginx; then
+   sudo apt-get update
+   sudo apt-get install -y nginx
+fi
 
-# Nginx configuration for redirection
-echo "
-server {
-	listen 80 default_server;
-	server_name _;
+# Define the Nginx configuration file path
+nginx_config_file="/etc/nginx/sites-available/default"
 
-	location /redirect_me {
-		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-	}
-}" | sudo tee /etc/nginx/sites-available/redirect.conf
+# Define the redirection configuration
+redirection_config="location /redirect_me {
+    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+}"
 
-# Symbolic to enable new configuration
-sudo ln -s /etc/nginx/sites-available/redirect.conf /etc/nginx/sites-enabled/
+# Enable the redirection in Nginx configuration
+if ! grep -q "location /redirect_me" "$nginx_config_file"; then
+   echo "$redirection_config" sudo tee -a "$nginx_config_file"
+fi
 
 # test configuration and reload
 sudo nginx -t
