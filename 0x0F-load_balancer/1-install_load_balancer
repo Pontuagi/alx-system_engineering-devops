@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on your lb-01 server.
+
+# Check if script is run as root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root."
+   exit 1
+fi
+
+# Update the system
+apt-get update
+apt-get -y upgrade
+
+# Install HAProxy
+apt-get install -y haproxy
+
+# Backup the original HAProxy configuration file
+mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.orig
+
+# Create a new HAProxy configuration file
+cat <<EOF > /etc/haproxy/haproxy.cfg
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    user haproxy
+    group haproxy
+    maxconn 4096
+    daemon
+
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    retries 3
+    option redispatch
+    maxconn 2000
+    timeout connect 5s
+    timeout client 30s
+    timeout server 30s
+
+frontend http-in
+    bind *:80
+    default_backend web-servers
+
+backend web-servers
+    balance roundrobin
+    server web-01 100.26.136.11:80 check
+    server web-02 54.236.190.242:80 check
+EOF
+
+
+# Enable HAProxy to start on boot
+systemctl enable haproxy
+
+# Start HAProxy
+systemctl start haproxy
+
+# Check HAProxy status
+systemctl status haproxy
+
+echo "HAProxy is now configured and running." 
