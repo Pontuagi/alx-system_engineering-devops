@@ -1,26 +1,20 @@
 #!/usr/bin/env bash
 # Configure Nginx so that its HTTP response contains a custom header (on web-01 and web-02)
 
-# Check if script is run as root
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root."
-   exit 1
-fi
-
 # Define the custom header and configuration file
-custom_header="add_header X-Served-By $hostname;"
+custom_header="add_header X-Served-By \$hostname;"
 nginx_config_file="/etc/nginx/sites-enabled/default"
 
 # Install Nginx (if not already installed)
 if ! dpkg -l | grep -q nginx; then
-   apt-get update
-   apt-get install -y nginx  
+   sudo apt-get update
+   sudo apt-get install -y nginx  
 fi
 
 # Enable custom header in Nginx configuration
 if ! grep -q "$custom_header" "$nginx_config_file"; then
-   sed -i "/server {/a \ \ \ \ $custom_header" "$nginx_config_file"
-   systemctl reload nginx
+   sudo sed -i "/server {/a \ \ \ \ $custom_header" "$nginx_config_file"
+   sudo service nginx restart
    echo "Nginx configured with custom header."
 else
    echo "Nginx is already configured with the custom header."
