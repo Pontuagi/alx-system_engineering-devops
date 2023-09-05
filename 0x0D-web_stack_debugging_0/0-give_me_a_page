@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Restart Apache2 on server
+service apache2 restart
