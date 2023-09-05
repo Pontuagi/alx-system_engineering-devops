@@ -2,20 +2,15 @@
 # configure ngix server so that '/redirect_me' redirects to another page
 
 # Install Nginx if not installed
-if ! dpkg -l | grep -q nginx; then
-   sudo apt-get update
-   sudo apt-get install -y nginx
-fi
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
 
-sudo service nginx start
+echo "Hello world!" | sudo tee /var/www/html/index.html
 
-# Define the redirection configuration
-new_redirection="server_name _;\\n\\trewrite ^/redirect https://twitter.com/AfricaFactsZone/status/1698342840177168463 permanent;"
+replacement_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Pontuagi permanent;"
 
-# Enable the redirection in Nginx configuration
-sudo sed -i "s#server_name _;#$new_redirection#" /etc/nginx/sites-available/default
+sudo sed -i "s/server_name _;/$replacement_string/" /etc/nginx/sites-enabled/default
 
-# test configuration and reload
-sudo nginx -t
+# restarn Nginx
 sudo service nginx restart
-sudo service nginx reload
