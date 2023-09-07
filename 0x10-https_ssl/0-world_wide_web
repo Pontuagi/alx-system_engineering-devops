@@ -16,16 +16,16 @@ display_info() {
  	# Loop through the subdomains and display information
   	for sub in "${subdomains[@]}"; do
     		# Use dig to retrieve DNS information
-    		dns_info=$(dig +short "$sub.$domain")
+    		dns_info=$(nslookup -query=ANY "$subdomain.$domain" 2>/dev/null)
+		if [ -n "$dns_info" ]; then
+    			# Use awk to split the output into variables
+			destination=$(echo "$dns_info" | grep -oE 'Address: ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)' | awk '{print $2}')
+            		record_type=$(echo "$dns_info" | grep -oE '([A-Z]+) .+' | awk '{print $1}')
+			echo "The subdomain $sub.$domain is a $record_type record and points to $destination"
 
-    		if [ -n "$dns_info" ]; then
-      			# Extract the record type and destination from dig output using awk
-      			record_type=$(echo "$dns_info" | awk '{print $1}')
-      			destination=$(echo "$dns_info" | awk '{print $2}')
-      			echo "The subdomain $sub is a $record_type record and points to $destination"
-    		else
-      			echo "The subdomain $sub does not exist for $domain"
-    		fi
+		else
+    			echo "The subdomain $sub.$domain does not exist"
+		fi
  	 done
 }
 
