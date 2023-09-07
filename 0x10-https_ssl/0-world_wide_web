@@ -21,7 +21,7 @@ display_info() {
     			# Use awk to split the output into variables
 			destination=$(echo "$dns_info" | grep -oE 'Address: ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)' | awk '{print $2}')
             		record_type=$(echo "$dns_info" | grep -oE '([A-Z]+) .+' | awk '{print $1}')
-			echo "The subdomain $sub.$domain is a $record_type record and points to $destination"
+			echo "The subdomain $sub is a $record_type record and points to $destination"
 
 		else
     			echo "The subdomain $sub.$domain does not exist"
