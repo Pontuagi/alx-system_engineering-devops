@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# A Bash script that will display information about subdomains.
+
+display_info() {
+	local domain="$1"
+	local subdomain="$2"
+
+	local default_subdomains=("www" "lb-01" "web-01" "web-02")
+
+	# use provided subdomail else default subdomains
+	if [ -n "$subdomain" ]; then
+    		subdomains=("$subdomain")
+  	else
+    		subdomains=("${default_subdomains[@]}")
+	fi
+ 	# Loop through the subdomains and display information
+  	for sub in "${subdomains[@]}"; do
+    		# Use dig to retrieve DNS information
+    		dns_info=$(dig +short "$sub.$domain")
+
+    		if [ -n "$dns_info" ]; then
+      			# Extract the record type and destination from dig output using awk
+      			record_type=$(echo "$dns_info" | awk '{print $1}')
+      			destination=$(echo "$dns_info" | awk '{print $2}')
+      			echo "The subdomain $sub is a $record_type record and points to $destination"
+    		else
+      			echo "The subdomain $sub does not exist for $domain"
+    		fi
+ 	 done
+}
+
+# Check for the correct number of arguments
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+	echo "Usage: $0 <domain> [subdomain]"
+	exit 1
+fi
+
+domain="$1"
+subdomain="$2"
+
+# Call the function to display subdomain information
+display_info "$domain" "$subdomain"
