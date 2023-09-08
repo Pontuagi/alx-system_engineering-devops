@@ -1,33 +1,29 @@
 global
-    maxconn 4096
-    ssl-default-bind-ciphers PROFILE=SYSTEM
     log /dev/log local0
+    log /dev/log local1 notice
+    daemon
 
 defaults
     log global
     mode http
     option httplog
     option dontlognull
-    option forwardfor
-    retries 3
-    timeout http-request 10s
-    timeout queue 1m
-    timeout connect 10s
-    timeout client 1m
-    timeout server 1m
-    timeout http-keep-alive 10s
-    timeout check 10s
-    maxconn 3000
-
-frontend www-http
-    bind *:80
-    redirect scheme https code 301 if !{ ssl_fc }
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
 
 frontend www-https
     bind *:443 ssl crt /etc/haproxy/certs/your_certificate.pem
+    mode http
+    option forwardfor
     reqadd X-Forwarded-Proto:\ https
+
+    tcp-request content accept if {ssl_c_used }
+    acl has_client_cert ssl_c_verify(0)
+    http-request deny if !has_client_cert
+
     default_backend www-backend
 
 backend www-backend
-    balance roundrobin
+    mode http
     server web-server 18.204.5.34:443 check
