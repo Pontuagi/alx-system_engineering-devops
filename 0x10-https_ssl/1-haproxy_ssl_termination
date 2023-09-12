@@ -13,7 +13,7 @@ defaults
     timeout server 50000ms
 
 frontend www-https
-    bind *:443 ssl crt /etc/haproxy/certs/your_certificate.pem
+    bind *:443 ssl crt /etc/letsencrypt/live/www.cityark.tech/fullchain.pem
     mode http
     option forwardfor
     reqadd X-Forwarded-Proto:\ https
@@ -26,4 +26,5 @@ frontend www-https
 
 backend www-backend
     mode http
+    balance roundrobin
     server web-server 18.204.5.34:443 check
