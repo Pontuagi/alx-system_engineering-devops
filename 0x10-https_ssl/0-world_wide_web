@@ -2,7 +2,7 @@
 # A Bash script that will display information about subdomains.
 
 function Display_domain_info() {
-    subdomains=("www" "lb_01" "web_01" "web_02")
+    subdomains=("www" "lb-01" "web-01" "web-02")
 
     if [ $# -eq 1 ]; then
         for subdomain in "${subdomains[@]}"; do
