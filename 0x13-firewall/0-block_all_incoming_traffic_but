@@ -1,7 +1,17 @@
+# Step 1: Install UFW (Uncomplicated Firewall)
 sudo apt install ufw
 
+# Step 2: Set the default incoming policy to deny (block all incoming traffic)
 sudo ufw default deny incoming
+
+# Step 3: Allow incoming traffic on port 22 (SSH).
 sudo ufw allow 22
+
+# Step 4: Allow incoming traffic on port 443 (HTTPS)
 sudo ufw allow 443
+
+# Step 5: Allow incoming traffic on port 80 (HTTP)
 sudo ufw allow 80
+
+# Step 6: Enable UFW with the defined rules
 sudo ufw enable
