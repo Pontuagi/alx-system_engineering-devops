@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# A script to run container as the nginx user.
+
+# Check if Nginx is currently running as root.
+if [ "$(ps aux | grep nginx | grep -c root)" -gt 0 ]; then
+    	# Stop Nginx if it's running as root.
+    	sudo stemctl stop nginx
+
+    	# Modify Nginx configuration to run as the 'nginx' user.
+    	sudo sed -i 's/user\s*root;/user nginx;/g' /etc/nginx/nginx.conf
+
+    	# Update Nginx to listen on all active IPs on port 8080.
+    	sudo sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/sites-available/default
+
+	# Start Nginx with the updated configuration.
+	sudo systemctl start nginx
+
+	echo "Nginx configured to run as the 'nginx' user and listening on port 8080."
+else
+	echo "Nginx is already configured."
+fi
