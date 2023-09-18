@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# a script to run commands as another user
+
+# check arguments
+if [ $# -ne 1 ]; then
+	echo "Usage: ./0-iamsomeoneelse <username>"
+	exit 1
+fi
+
+# Pass username as argument.
+username="$1"
+sudo -u "$username" whoami
