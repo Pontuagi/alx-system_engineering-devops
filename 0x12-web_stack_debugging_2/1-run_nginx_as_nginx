@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
 # A script to run container as the nginx user.
 
-# Check if Nginx is currently running as root.
-if [ "$(ps aux | grep nginx | grep -c root)" -gt 0 ]; then
-    	# Stop Nginx if it's running as root.
-    	sudo stemctl stop nginx
+# Step 1: Set read-only permissions for the Nginx configuration file
+sudo chmod 400 /etc/nginx/nginx.conf
 
-    	# Modify Nginx configuration to run as the 'nginx' user.
-    	sudo sed -i 's/user\s*root;/user nginx;/g' /etc/nginx/nginx.conf
+# Step 2: Change ownership of the Nginx configuration file to user and group 'nginx'
+sudo chown nginx:nginx /etc/nginx/nginx.conf
 
-    	# Update Nginx to listen on all active IPs on port 8080.
-    	sudo sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/sites-available/default
+# Step 3: Modify the Nginx site configuration to use port 8080 instead of 80
+sudo sed -i "s/80/8080/g" /etc/nginx/sites-available/default
 
-	# Start Nginx with the updated configuration.
-	sudo systemctl start nginx
+# Step 4: Terminate any running Apache processes
+pkill apache
 
-	echo "Nginx configured to run as the 'nginx' user and listening on port 8080."
-else
-	echo "Nginx is already configured."
-fi
+# Step 5: Restart the Nginx web server
+sudo -u nginx service nginx restart
