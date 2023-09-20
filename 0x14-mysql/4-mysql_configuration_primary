@@ -35,3 +35,5 @@ log-error       = /var/log/mysql/error.log
 # bind-address  = 127.0.0.1
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
+server_id     =1
+log_bin       = /var/log/mysql/mysql_bin_log.log
