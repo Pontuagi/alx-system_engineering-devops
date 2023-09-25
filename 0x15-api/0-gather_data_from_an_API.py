@@ -10,12 +10,11 @@ import sys
 
 
 def get_employee_todo(employee_id):
-     """
+    """
     Return TODO list for an Employee.
 
     :param employee_id: The employee's ID.
     """
-
     base_url = 'https://jsonplaceholder.typicode.com'
 
     # Retrieve employee information
@@ -24,7 +23,7 @@ def get_employee_todo(employee_id):
         employee_data = employee_response.json()
         employee_name = employee_data["name"]
     else:
-        print("Failed to retrieve employee list information")
+        # print("Failed to retrieve employee list information")
         return
 
     # Retrieve employee todo list
@@ -33,7 +32,7 @@ def get_employee_todo(employee_id):
     if todo_response.status_code == 200:
         todo_data = todo_response.json()
     else:
-        print("Failed to retrieve TODO list information.}")
+        # print("Failed to retrieve TODO list information.}")
         return
 
     # Calculate the progress
