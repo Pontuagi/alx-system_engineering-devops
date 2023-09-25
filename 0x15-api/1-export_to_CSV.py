@@ -7,6 +7,7 @@ It exports the employee data to csv
 """
 
 import csv
+from io import StringIO
 import requests
 import sys
 
@@ -34,7 +35,7 @@ def get_employee_todo(employee_id):
     if todo_response.status_code == 200:
         todo_data = todo_response.json()
     else:
-        print("Failed to retrieve TODO list information.}")
+        print("Failed to retrieve TODO list information.")
         return
 
     # Calculate the progress
@@ -43,33 +44,14 @@ def get_employee_todo(employee_id):
 
     csv_file = f"{employee_id}.csv"
     with open(csv_file, mode='w', newline='') as csv_file_write:
-        csv_writer = csv.writer(csv_file_write)
-        csv_writer.writerow([
-            "USER_ID",
-            "USERNAME",
-            "TASK_COMPLETED_STATUS",
-            "TASK_TITLE"
-            ])
+        csv_writer = csv.writer(csv_file_write, quoting=csv.QUOTE_ALL)
         for task in todo_data:
             csv_writer.writerow([
-                employee_id,
-                employee_name,
-                task["completed"],
-                task["title"]
+                str(employee_id),
+                str(employee_name),
+                str(task["completed"]),
+                str(task["title"])
                 ])
-
-    """
-    # Display
-    print("Employee {} is done with tasks({}/{}):".format(
-            employee_name,
-            completed_tasks,
-            total_tasks)
-          )
-
-    for task in todo_data:
-        if task["completed"]:
-            print(f"\t{task['title']}")
-    """
 
 
 if __name__ == '__main__':
