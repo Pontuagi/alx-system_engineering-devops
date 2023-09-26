@@ -25,7 +25,7 @@ def get_employee_todo(employee_id):
     employee_response = requests.get(f"{base_url}/users/{employee_id}")
     if employee_response.status_code == 200:
         employee_data = employee_response.json()
-        employee_name = employee_data["name"]
+        employee_name = employee_data["username"]
     else:
         print("Failed to retrieve employee list information.")
         return
