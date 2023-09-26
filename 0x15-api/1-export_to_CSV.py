@@ -47,10 +47,10 @@ def get_employee_todo(employee_id):
         csv_writer = csv.writer(csv_file_write, quoting=csv.QUOTE_ALL)
         for task in todo_data:
             csv_writer.writerow([
-                str(employee_id),
-                str(employee_name),
-                str(task["completed"]),
-                str(task["title"])
+                (employee_id),
+                (employee_name),
+                (task["completed"]),
+                (task["title"])
                 ])
 
 
