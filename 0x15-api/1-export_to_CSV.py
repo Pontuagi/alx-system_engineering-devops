@@ -24,7 +24,7 @@ def get_employee_todo(employee_id):
     employee_response = requests.get(f"{base_url}/users/{employee_id}")
     if employee_response.status_code == 200:
         employee_data = employee_response.json()
-        employee_name = employee_data["name"]
+        employee_name = employee_data["username"]
     else:
         print("Failed to retrieve employee list information")
         return
@@ -43,8 +43,8 @@ def get_employee_todo(employee_id):
     completed_tasks = sum(1 for task in todo_data if task["completed"])
 
     csv_file = f"{employee_id}.csv"
-    with open(csv_file, mode='w', newline='') as csv_file_write:
-        csv_writer = csv.writer(csv_file_write, quoting=csv.QUOTE_ALL)
+    with open(csv_file, mode='w', newline='', encoding='utf-8') as csv_fwrite:
+        csv_writer = csv.writer(csv_fwrite, quoting=csv.QUOTE_ALL)
         for task in todo_data:
             csv_writer.writerow([
                 (employee_id),
