@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 
 """
-A python script using REST API.
-It takes an employee ID and returns information about their TODO list
+A Python script using REST API.
+It takes an employee ID and returns information about their TODO list.
+It exports the employee data to CSV and JSON formats.
 """
 
-import requests
+import csv
+import json
 import sys
+import requests
+from io import StringIO
 
 
 def get_employee_todo(employee_id):
@@ -23,7 +27,7 @@ def get_employee_todo(employee_id):
         employee_data = employee_response.json()
         employee_name = employee_data["name"]
     else:
-        print("Failed to retrieve employee list information")
+        print("Failed to retrieve employee list information.")
         return
 
     # Retrieve employee todo list
@@ -32,23 +36,21 @@ def get_employee_todo(employee_id):
     if todo_response.status_code == 200:
         todo_data = todo_response.json()
     else:
-        print("Failed to retrieve TODO list information.}")
+        print("Failed to retrieve TODO list information.")
         return
 
-    # Calculate the progress
-    total_tasks = len(todo_data)
-    completed_tasks = sum(1 for task in todo_data if task["completed"])
+    # Create a dictionary to store task data
+    tasks_dict = {employee_id: [{
+            "task": task["title"],
+            "completed": task["completed"],
+            "username": employee_name
+        } for task in todo_data]
+    }
 
-    # Display
-    print("Employee {} is done with tasks({}/{}):".format(
-            employee_name,
-            completed_tasks,
-            total_tasks)
-          )
-
-    for task in todo_data:
-        if task["completed"]:
-            print(f"\t{task['title']}")
+    # Export data to JSON
+    json_file_name = f"{employee_id}.json"
+    with open(json_file_name, mode='w') as json_file_write:
+        json.dump(tasks_dict, json_file_write, indent=4)
 
 
 if __name__ == '__main__':
@@ -59,4 +61,4 @@ if __name__ == '__main__':
             employee_id = int(sys.argv[1])
             get_employee_todo(employee_id)
         except ValueError:
-            print("Employee id must be an interger.")
+            print("Employee id must be an integer.")
