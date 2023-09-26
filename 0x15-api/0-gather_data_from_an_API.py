@@ -45,10 +45,12 @@ def get_employee_todo(employee_id):
             completed_tasks,
             total_tasks)
           )
-
+    completed = []
     for task in todo_data:
         if task["completed"]:
-            print(f"\t{task['title']}")
+            completed.append(task)
+    for task in completed:
+        print("\t {}".format(task["title"]))
 
 
 if __name__ == '__main__':
