@@ -7,10 +7,10 @@ It exports the employee data to CSV and JSON formats.
 """
 
 import csv
-import json
-import sys
-import requests
 from io import StringIO
+import json
+import requests
+import sys
 
 
 def get_employee_todo(employee_id):
@@ -50,7 +50,7 @@ def get_employee_todo(employee_id):
     # Export data to JSON
     json_file_name = f"{employee_id}.json"
     with open(json_file_name, mode='w') as json_file_write:
-        json.dump(tasks_dict, json_file_write, indent=4)
+        json.dump(tasks_dict, json_file_write)
 
 
 if __name__ == '__main__':
