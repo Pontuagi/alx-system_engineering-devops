@@ -1,6 +1,7 @@
 # 0x09-web_infrastructure_design
 
-0-simple_web_stack - design a one server web infrastructure that hosts the website that is reachable via www.foobar.com. Start your explanation by having a user wanting to access your website.
+***__0-simple_web_stack__***
+design a one server web infrastructure that hosts the website that is reachable via www.foobar.com. Start your explanation by having a user wanting to access your website.
 
 __Requirements:__
 - You must use:
@@ -23,7 +24,7 @@ __Requirements:__
 - Downtime when maintenance needed (like deploying new code web server needs to be restarted)
 - Cannot scale if too much incoming traffic
 
-1-distributed_web_infrastructure - design a three server web infrastructure that hosts the website www.foobar.com.
+__1-distributed_web_infrastructure__ - design a three server web infrastructure that hosts the website www.foobar.com.
 
 __Requirements:__
 - You must add:
@@ -44,7 +45,7 @@ __Requirements:__
 - Security issues (no firewall, no HTTPS)
 - No monitoring
 
-2-secured_and_monitored_web_infrastructure - design a three server web infrastructure that hosts the website www.foobar.com, it must be secured, serve encrypted traffic, and be monitored.
+***__2-secured_and_monitored_web_infrastructure__*** - design a three server web infrastructure that hosts the website www.foobar.com, it must be secured, serve encrypted traffic, and be monitored.
 
 __Requirements:__
 - You must add:
@@ -63,7 +64,8 @@ __Requirements:__
 - Why having only one MySQL server capable of accepting writes is an issue
 - Why having servers with all the same components (database, web server and application server) might be a problem
 
-3-scale_up - 
+***__3-scale_up__***  
+
 __Requirements:__
 - You must add:
 - 1 server
