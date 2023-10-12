@@ -1,15 +1,15 @@
-Shell, init files. variables and expansions
-0-alias creates alias ls thay represents the value rm *
-1-hello_you creates a script that prints hello $user
-2-path adds /action to PATH
-3-paths counts the number of directories in the path
-4--global_variables creates a script that lists environment variables
-5-local_varialble lists all local, enviroment variables and functions
-6-create_local_variable creates a local variable
-7-create_global_variable createa a new global variable
-8-true _knowledge print the result of addition
-9-divide-and-rule prints the result of a division_
-10-love_exponent_breath prints the result of exponent
-11-binary_to_decimal converts a number from base 2 to base 10
-12-combinations prints all possible combinations of two letters except oo
-13-print_float prints a number wit 2 decimal places followed by a new line
+# Shell, init files. variables and expansions
+- 0-alias creates alias ls thay represents the value rm *
+- 1-hello_you creates a script that prints hello $user
+- 2-path adds /action to PATH
+- 3-paths counts the number of directories in the path
+- 4--global_variables creates a script that lists environment variables
+- 5-local_varialble lists all local, enviroment variables and functions
+- 6-create_local_variable creates a local variable
+- 7-create_global_variable createa a new global variable
+- 8-true _knowledge_ print the result of addition
+- 9-divide-and-rule prints the result of a division_
+- 10-love_exponent_breath prints the result of exponent
+- 11-binary_to_decimal converts a number from base 2 to base 10
+- 12-combinations prints all possible combinations of two letters except oo
+- 13-print_float prints a number wit 2 decimal places followed by a new line
