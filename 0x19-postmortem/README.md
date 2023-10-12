@@ -1,6 +1,8 @@
+
 # 0x19. Postmortem
 
 # WebStack Debbugging 3 PostMortem
+![meme2](https://github.com/Pontuagi/alx-system_engineering-devops/assets/102847899/1ff0dfff-4e0f-4db6-adc2-61888e8ca81a)
 
 ## Issue Summary
 
@@ -16,6 +18,8 @@ End Time: October 11, 2023, 23:09(EAT)
 The server was completly inaccessible during this time
 
 ## Root Cause and Resolution
+
+![meme 1](https://github.com/Pontuagi/alx-system_engineering-devops/assets/102847899/0870d796-8123-48e4-9a81-635932b8bf6a)
 
 The root cause of the problem in the system was caused by a typographical error.
 The text in the file /var/www/html/wp-settings.php was written wrongly.
